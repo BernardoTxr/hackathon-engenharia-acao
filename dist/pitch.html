@@ -95,6 +95,9 @@
     .big-idea { font-size: clamp(29px, 3.1vw, 52px); line-height: 1.12; font-weight: 780; letter-spacing: -.035em; }
     .big-idea em { color: var(--sp-red); font-style: normal; }
     .interface-note { margin-top: 28px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: clamp(16px, 1.4vw, 21px); line-height: 1.45; }
+    .domain-input { margin-top: 22px; padding: 15px 17px; background: var(--soft-red); border-left: 4px solid var(--sp-red); }
+    .domain-input b { display: block; margin-bottom: 5px; font-size: clamp(14px, 1.1vw, 18px); }
+    .domain-input span { color: #534c49; font-size: clamp(12px, .95vw, 15px); line-height: 1.4; }
     .signals { display: flex; flex-direction: column; }
     .signal { display: grid; grid-template-columns: 66px 1fr; gap: 18px; padding: 22px 0; border-top: 1px solid var(--line); }
     .signal:last-child { border-bottom: 1px solid var(--line); }
@@ -114,12 +117,19 @@
     .definitions { display: grid; gap: 12px; }
     .definitions p { margin: 0; display: grid; grid-template-columns: 92px 1fr; gap: 14px; color: var(--muted); font-size: clamp(15px, 1.2vw, 19px); line-height: 1.35; }
     .definitions b { color: var(--sp-black); }
+    .graph-specs { margin: 0; border-bottom: 1px solid var(--line); }
+    .graph-spec { display: grid; grid-template-columns: 118px 1fr; gap: 20px; padding: 16px 0; border-top: 1px solid var(--line); }
+    .graph-spec dt { margin: 0; color: var(--sp-red); font-size: 11px; font-weight: 850; letter-spacing: .11em; text-transform: uppercase; }
+    .graph-spec dd { margin: 0; color: var(--muted); font-size: clamp(13px, 1vw, 16px); line-height: 1.42; }
+    .graph-spec dd strong { color: var(--sp-black); }
+    .graph-spec ul, .graph-spec ol { margin: 0; padding-left: 18px; }
+    .graph-spec li + li { margin-top: 5px; }
     .image-frame { position: relative; min-height: 0; height: min(55vh, 530px); overflow: hidden; background: var(--white); border: 1px solid var(--line); }
     .image-frame img { width: 100%; height: 100%; object-fit: cover; }
     .image-frame.graph img { object-position: center; }
     .image-caption { position: absolute; left: 18px; bottom: 16px; padding: 9px 12px; background: rgba(255,255,255,.92); border-left: 4px solid var(--sp-red); font-size: 12px; font-weight: 700; }
 
-    .forecast-layout { display: grid; grid-template-columns: .9fr 1.1fr; gap: 7vw; align-items: center; }
+    .forecast-layout { display: grid; grid-template-columns: .72fr 1.28fr; gap: 5vw; align-items: center; }
     .forecast-copy .lead { margin-top: 22px; }
     .time-rail { display: grid; grid-template-columns: repeat(3, 1fr); position: relative; padding: 36px 0; }
     .time-rail:before { content: ""; position: absolute; top: 66px; left: 8%; right: 8%; height: 2px; background: var(--sp-black); }
@@ -128,14 +138,36 @@
     .moment b { display: block; font: 700 clamp(25px, 2.5vw, 39px) Georgia, serif; }
     .moment span { display: block; margin-top: 7px; color: var(--muted); font-size: clamp(13px, 1.05vw, 17px); }
     .forecast-equations { margin-top: 20px; }
+    .forecast-steps { display: grid; grid-template-columns: repeat(3, 1fr); border-block: 1px solid var(--line); margin-top: 24px; }
+    .forecast-step { padding: 18px 16px; }
+    .forecast-step + .forecast-step { border-left: 1px solid var(--line); }
+    .forecast-step b { display: block; color: var(--sp-red); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 7px; }
+    .forecast-step span { display: block; font-size: clamp(14px, 1.05vw, 17px); line-height: 1.35; }
     .mvp-note { display: inline-block; margin-top: 20px; background: var(--soft-red); padding: 12px 15px; border-left: 4px solid var(--sp-red); color: #3b3030; font-size: clamp(13px, 1.05vw, 17px); line-height: 1.4; }
+    .forecast-flow { display: grid; grid-template-columns: minmax(150px, 1fr) 76px minmax(150px, 1fr); align-items: center; gap: 18px; }
+    .flow-inputs { display: grid; gap: 10px; }
+    .flow-plus { color: var(--sp-red); text-align: center; font-size: 25px; font-weight: 850; line-height: 1; }
+    .flow-graph, .flow-events { margin: 0; padding: 17px; background: rgba(255,255,255,.62); border: 1px solid var(--line); }
+    .flow-graph figcaption, .flow-events b { display: block; margin-bottom: 10px; font-size: clamp(15px, 1.15vw, 19px); font-weight: 800; }
+    .flow-graph svg { display: block; width: 100%; height: 118px; }
+    .flow-graph line { stroke: #77716a; stroke-width: 3; }
+    .flow-graph circle { fill: var(--paper); stroke: var(--sp-black); stroke-width: 3; }
+    .flow-graph.updated line.emphasis { stroke: var(--sp-red); stroke-width: 7; }
+    .flow-graph.updated circle.changed { fill: var(--soft-red); stroke: var(--sp-red); }
+    .flow-events { border-left: 5px solid var(--sp-red); background: var(--soft-red); }
+    .flow-events span { display: block; color: #514846; font-size: clamp(12px, .96vw, 15px); line-height: 1.38; }
+    .flow-events small { display: block; margin-top: 9px; color: var(--sp-red); font-size: 10px; font-weight: 850; letter-spacing: .11em; text-transform: uppercase; }
+    .flow-arrow { text-align: center; color: var(--sp-red); }
+    .flow-arrow b { display: block; font-size: 42px; line-height: 1; }
+    .flow-arrow span { display: block; margin-top: 9px; color: var(--muted); font-size: 10px; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; }
+    .flow-output-note { margin: 12px 0 0; color: var(--muted); font-size: clamp(12px, .95vw, 15px); line-height: 1.4; }
 
     .optimization-layout { display: grid; grid-template-columns: 1.03fr .97fr; gap: 5vw; align-items: center; min-height: 0; }
     .optimization-copy { min-width: 0; }
     .objective-formula { margin: 12px 0; }
-    .objective-formula .technical-equation { padding-block: 10px; }
-    .objective-formula .technical-equation .math-line { font-size: clamp(16px, 1.42vw, 23px); }
-    .objective-formula .technical-equation small { font-size: clamp(11px, .87vw, 14px); }
+    .objective-formula .technical-equation { padding-block: 18px; }
+    .objective-formula .technical-equation .math-line { font-size: clamp(19px, 1.75vw, 28px); }
+    .objective-formula .technical-equation small { font-size: clamp(12px, .95vw, 15px); }
     .constraint { display: flex; align-items: baseline; gap: 16px; padding: 13px 0; }
     .constraint strong { color: var(--sp-red); font-size: 12px; text-transform: uppercase; letter-spacing: .12em; }
     .constraint span { font: 600 clamp(19px, 1.65vw, 26px) Georgia, serif; }
@@ -150,29 +182,43 @@
     .result-strip div + div { border-left: 1px solid var(--line); }
     .result-strip strong { display: block; font-size: clamp(19px, 1.7vw, 27px); }
     .result-strip span { color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: .08em; }
-    .benchmark-layout { display: grid; grid-template-columns: minmax(0, 1.34fr) minmax(280px, .66fr); gap: 4vw; align-items: center; min-height: 0; }
-    .benchmark-frame { height: min(59vh, 560px); margin: 0; background: #fff; border: 1px solid var(--line); display: grid; place-items: center; overflow: hidden; }
-    .benchmark-frame img { width: 100%; height: 100%; object-fit: contain; }
-    .benchmark-notes { display: flex; flex-direction: column; }
-    .benchmark-note { padding: 20px 0; border-top: 1px solid var(--line); }
-    .benchmark-note:last-child { border-bottom: 1px solid var(--line); }
-    .benchmark-note span { color: var(--sp-red); font-size: 11px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
-    .benchmark-note strong { display: block; margin: 5px 0 4px; font-size: clamp(25px, 2.3vw, 38px); line-height: 1; letter-spacing: -.035em; }
-    .benchmark-note p { margin: 0; color: var(--muted); font-size: clamp(12px, .98vw, 16px); line-height: 1.35; }
-    .method-note { margin-top: 16px; color: #777169; font-size: 11px; line-height: 1.45; }
+    .simulation-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(240px, .32fr); gap: clamp(24px, 4vw, 60px); align-items: center; min-height: 0; }
+    .simulation-frame { margin: 0; min-width: 0; }
+    .simulation-frame video { display: block; width: 100%; max-height: 58vh; aspect-ratio: 16 / 9; object-fit: contain; background: var(--sp-black); border: 1px solid var(--line); }
+    .simulation-copy { border-top: 4px solid var(--sp-red); padding-top: 18px; }
+    .simulation-copy strong { display: block; font-size: clamp(22px, 2vw, 32px); line-height: 1.15; }
+    .simulation-copy p { margin: 13px 0 0; color: var(--muted); font-size: clamp(15px, 1.25vw, 20px); line-height: 1.45; }
+    .benchmark-layout { display: flex; flex-direction: column; justify-content: center; min-height: 0; }
+    .mean-charts { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(22px, 3vw, 46px); }
+    .mean-chart { border-top: 4px solid var(--sp-black); padding-top: 17px; }
+    .mean-chart header { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 23px; }
+    .mean-chart h3 { margin: 0; font-size: clamp(20px, 1.7vw, 28px); letter-spacing: -.025em; }
+    .mean-chart header span { color: var(--muted); font-size: 11px; white-space: nowrap; }
+    .bar-list { display: flex; flex-direction: column; gap: 16px; }
+    .bar-row { display: grid; grid-template-columns: minmax(86px, 112px) 1fr 55px; align-items: center; gap: 10px; }
+    .bar-row > span { color: #5e5a54; font-size: clamp(10px, .82vw, 13px); line-height: 1.12; }
+    .bar-track { height: 20px; background: var(--soft-gray); overflow: hidden; }
+    .bar-fill { display: block; height: 100%; width: var(--value); background: #9b9892; }
+    .bar-row.exact .bar-fill { background: var(--sp-red); }
+    .bar-row.exact > span, .bar-row.exact > strong { color: var(--sp-black); font-weight: 800; }
+    .bar-row > strong { font-size: 12px; text-align: right; font-variant-numeric: tabular-nums; }
+    .method-note { margin: 28px 0 0; padding-top: 14px; border-top: 1px solid var(--line); color: #777169; font-size: 11px; line-height: 1.45; }
 
     .slide-foot { display: flex; justify-content: space-between; align-items: center; gap: 18px; color: #817c74; font-size: 12px; }
     .brandline { display: flex; align-items: center; gap: 9px; color: var(--sp-black); font-weight: 780; }
     .brandline i { width: 22px; height: 7px; background: linear-gradient(90deg, var(--sp-black) 0 50%, var(--sp-red) 50%); }
     .progress { position: fixed; left: 0; bottom: 0; height: 5px; width: 100%; z-index: 20; }
-    .progress i { display: block; height: 100%; width: 11.1111%; background: var(--sp-red); transition: transform .28s ease; transform-origin: left; }
+    .progress i { display: block; height: 100%; width: 12.5%; background: var(--sp-red); transition: transform .28s ease; transform-origin: left; }
     .controls { position: fixed; right: 22px; bottom: 20px; z-index: 30; display: flex; gap: 7px; }
     .controls button { width: 42px; height: 42px; border: 1px solid var(--line); background: rgba(255,255,255,.9); color: var(--sp-black); border-radius: 50%; cursor: pointer; }
     .controls button:hover { border-color: var(--sp-red); color: var(--sp-red); }
 
     @media (max-width: 900px), (max-height: 650px) {
       .slide { overflow-y: auto; }
-      .problem-layout, .objective-layout, .data-layout, .graph-layout, .forecast-layout, .optimization-layout, .benchmark-layout { grid-template-columns: 1fr; gap: 28px; }
+      .problem-layout, .objective-layout, .data-layout, .graph-layout, .forecast-layout, .optimization-layout, .simulation-layout, .benchmark-layout { grid-template-columns: 1fr; gap: 28px; }
+      .forecast-flow { grid-template-columns: 1fr; }
+      .flow-arrow { transform: rotate(90deg); }
+      .mean-charts { grid-template-columns: 1fr; }
       .tension { min-height: auto; border-left: 0; border-top: 1px solid var(--line); padding: 28px 0 0; }
       .image-frame, .route-frame { height: 380px; }
       .slide-foot { padding-right: 82px; }
@@ -184,45 +230,14 @@
       .slide { position: relative; visibility: visible; opacity: 1; transform: none; width: 297mm; height: 167mm; break-after: page; }
       .controls, .progress { display: none; }
     }
-
-    /* video slot */
-    .image-frame .video-slot, .route-frame .video-slot { width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; text-align:center; padding:24px;
-      background: repeating-linear-gradient(45deg,#faf7f2,#faf7f2 14px,#f2ede4 14px,#f2ede4 28px); }
-    .simulation-video { display:block; width:100%; height:100%; object-fit:contain; background:var(--sp-black); }
-    .video-slot .lf-ic { font-size:50px; color:var(--sp-red); }
-    .video-slot .lf-t { font-weight:850; font-size:clamp(16px,1.5vw,24px); letter-spacing:.02em; }
-    .video-slot .lf-s { color:var(--muted); font-size:clamp(12px,1.05vw,17px); max-width:34ch; line-height:1.4; }
-    /* frontend hook (reusa custom-layout) */
-    .custom-layout { display:grid; grid-template-columns:.95fr 1.05fr; gap:5vw; align-items:center; }
-    .live-frame { height:min(56vh,540px); border:2px dashed var(--sp-red); background:var(--soft-red); color:var(--sp-black); text-decoration:none; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:18px; text-align:center; padding:28px; cursor:pointer; }
-    .live-frame:hover { border-style:solid; background:#f3dcda; }
-    .live-frame .lf-ic { font-size:54px; color:var(--sp-red); line-height:1; }
-    .live-frame .lf-t { font-weight:850; font-size:clamp(18px,1.7vw,27px); letter-spacing:.02em; overflow-wrap:anywhere; }
-    .live-frame .lf-s { color:var(--muted); font-size:clamp(13px,1.1vw,18px); max-width:34ch; line-height:1.45; }
-    /* resultado final - grafico de barras chamativo */
-    .result-final { display:grid; grid-template-columns:1.45fr .75fr; gap:5vw; align-items:center; min-height:0; }
-    .rf-chart { display:flex; align-items:flex-end; justify-content:center; gap:4.5vw; height:min(54vh,480px); }
-    .rf-col { flex:1; max-width:200px; height:100%; display:grid; grid-template-rows:auto minmax(0,1fr) auto; row-gap:12px; }
-    .rf-val { align-self:end; text-align:center; font:850 clamp(30px,3.2vw,58px) Georgia,serif; line-height:1; }
-    .rf-col.us .rf-val { color:var(--sp-red); }
-    .rf-barwrap { display:flex; align-items:flex-end; min-height:0; }
-    .rf-bar { width:100%; border-radius:5px 5px 0 0; transition:height .6s ease; }
-    .rf-name { text-align:center; font-size:clamp(14px,1.35vw,21px); font-weight:780; line-height:1.15; }
-    .rf-col.us .rf-name { color:var(--sp-red); }
-    .rf-gains { display:flex; flex-direction:column; gap:22px; }
-    .rf-gain { border-left:6px solid var(--line); padding-left:20px; }
-    .rf-gain b { display:block; font:850 clamp(30px,3vw,52px) Georgia,serif; line-height:.95; }
-    .rf-gain span { color:var(--muted); font-size:clamp(12px,1.05vw,17px); font-weight:750; margin-top:4px; display:block; }
-    .rf-gain.hero { border-left-color:var(--sp-red); }
-    .rf-gain.hero b { color:var(--sp-red); font-size:clamp(52px,5.5vw,104px); letter-spacing:-.04em; }
   </style>
 </head>
 <body>
   <main class="deck" aria-live="polite">
-    <section class="slide active" aria-label="Slide 1 de 9">
+    <section class="slide active" aria-label="Slide 1 de 8">
       <header class="slide-head">
         <div><p class="kicker">O problema</p><h1>Microobras são pequenas.<br><span class="accent">O impacto não.</span></h1></div>
-        <span class="slide-number">01 / 09</span>
+        <span class="slide-number">01 / 08</span>
       </header>
       <div class="problem-layout">
         <div class="problem-copy">
@@ -238,10 +253,10 @@
       <footer class="slide-foot"><span class="brandline"><i></i> Alocador Urbano</span><span>Hackathon Engenharia em Ação</span></footer>
     </section>
 
-    <section class="slide" aria-label="Slide 2 de 9">
+    <section class="slide" aria-label="Slide 2 de 8">
       <header class="slide-head">
         <div><p class="kicker">Nosso objetivo</p><h2>Transformar restrições urbanas em uma rota diária defensável.</h2></div>
-        <span class="slide-number">02 / 09</span>
+        <span class="slide-number">02 / 08</span>
       </header>
       <div class="objective-layout">
         <div>
@@ -257,10 +272,10 @@
       <footer class="slide-foot"><span class="brandline"><i></i> Alocador Urbano</span><span>Dados → previsão → decisão</span></footer>
     </section>
 
-    <section class="slide" aria-label="Slide 3 de 9">
+    <section class="slide" aria-label="Slide 3 de 8">
       <header class="slide-head">
         <div><p class="kicker">Passo 1 · Extração de dados</p><h2>A cidade já produz sinais.<br>Precisamos conectá-los.</h2></div>
-        <span class="slide-number">03 / 09</span>
+        <span class="slide-number">03 / 08</span>
       </header>
       <div class="data-layout">
         <div>
@@ -276,24 +291,19 @@
       <footer class="slide-foot"><span class="brandline"><i></i> Alocador Urbano</span><span>Três sinais · uma leitura integrada</span></footer>
     </section>
 
-    <section class="slide" aria-label="Slide 4 de 9">
+    <section class="slide" aria-label="Slide 4 de 8">
       <header class="slide-head">
         <div><p class="kicker">Passo 2 · Representação</p><h2>A cidade vira um grafo que muda com o tempo.</h2></div>
-        <span class="slide-number">04 / 09</span>
+        <span class="slide-number">04 / 08</span>
       </header>
       <div class="graph-layout">
         <div class="graph-copy">
-          <div class="equation-stack">
-            <div class="technical-equation"><span class="eq-number">(1)</span><span class="math-line">G<sub>t</sub> = (V, E, A<sub>t</sub>), &nbsp; A<sub>t</sub> = {a<sub>e</sub>(t)}<sub>e∈E</sub></span><small>O conjunto de vértices e ruas é fixo; seus atributos formam o estado temporal A<sub>t</sub>.</small></div>
-            <div class="technical-equation"><span class="eq-number">(2)</span><span class="math-line">a<sub>e</sub>(t) = (τ<sub>e</sub>(t), n<sub>e</sub>(t)) ∈ ℝ<sub>+</sub><sup>2</sup></span><small>τ<sub>e</sub>(t) é o tempo de travessia; n<sub>e</sub>(t) é o impacto populacional de executar a obra.</small></div>
-            <div class="technical-equation"><span class="eq-number">(3)</span><span class="math-line">Δ<sub>t</sub>(u,v) = min<sub>P∈𝒫(u,v)</sub> Σ<sub>e∈P</sub> τ<sub>e</sub>(t)</span><small>O deslocamento entre dois pontos é o menor tempo entre todos os caminhos possíveis.</small></div>
-          </div>
-          <div class="definitions">
-            <p><b>Vértices</b><span>grandes cruzamentos e pontos operacionais</span></p>
-            <p><b>Arestas</b><span>ruas que conectam esses pontos</span></p>
-            <p><b>n<sub>e</sub>(t)</b><span>pessoas afetadas se houver obra na rua</span></p>
-            <p><b>τ<sub>e</sub>(t)</b><span>tempo estimado para atravessar a rua</span></p>
-          </div>
+          <dl class="graph-specs">
+            <div class="graph-spec"><dt>Estrutura</dt><dd><ul><li><strong>Vértices:</strong> grandes cruzamentos.</li><li><strong>Arestas:</strong> ruas que conectam esses pontos.</li><li><strong>Bidirecional:</strong> cada rua pode ser percorrida nos dois sentidos.</li></ul></dd></div>
+            <div class="graph-spec"><dt>Horário</dt><dd>Cada grafo representa uma fotografia da cidade em um horário específico.</dd></div>
+            <div class="graph-spec"><dt>Arestas</dt><dd><ol><li><strong>Pessoas afetadas</strong> se houver obra na rua naquele horário.</li><li><strong>Tempo estimado de deslocamento</strong> pela rua naquele horário.</li></ol></dd></div>
+            <div class="graph-spec"><dt>Demandas</dt><dd>Um especialista de domínio informa: <strong>1) prioridade</strong> e <strong>2) tempo de serviço</strong>.</dd></div>
+          </dl>
         </div>
         <figure class="image-frame graph">
           <img src="outputs/grafo_mock.png" alt="Exemplo de rede urbana representada como grafo" />
@@ -303,44 +313,56 @@
       <footer class="slide-foot"><span class="brandline"><i></i> Alocador Urbano</span><span>Rede bidirecional · atributos temporais</span></footer>
     </section>
 
-    <section class="slide" aria-label="Slide 5 de 9">
+    <section class="slide" aria-label="Slide 5 de 8">
       <header class="slide-head">
-        <div><p class="kicker">Passo 2 · Forecasting espaço-temporal</p><h2>Prevemos o fluxo antes de escolher a obra.</h2></div>
-        <span class="slide-number">05 / 09</span>
+          <div><p class="kicker">Passo 2 · Forecasting espaço-temporal</p><h2>Podemos antecipar o estado da cidade.</h2></div>
+        <span class="slide-number">05 / 08</span>
       </header>
       <div class="forecast-layout">
         <div class="forecast-copy">
-          <p class="lead">Assim como a meteorologia prevê o estado futuro de uma atmosfera conectada, usamos o histórico da rede para estimar o estado futuro da cidade.</p>
-          <div class="mvp-note"><strong>MVP atual:</strong> o notebook congela <i>n<sub>e</sub></i> e <i>τ<sub>e</sub></i> no início do dia. A evolução proposta produz valores por faixa horária.</div>
+            <p class="lead">Como possibilidade, uma <strong>Temporal Graph Neural Network (TGNN)</strong> aprende simultaneamente as relações espaciais entre ruas vizinhas e a evolução temporal entre horários — inspirada na lógica de previsão usada em meteorologia.</p>
+          <div class="mvp-note"><strong>MVP atual:</strong> o notebook usa uma fotografia fixa do início do dia. A evolução proposta gera um grafo para cada faixa horária.</div>
         </div>
-        <div>
-          <div class="time-rail">
-            <div class="moment"><b>G<sub>t−1</sub></b><span>histórico observado</span></div>
-            <div class="moment"><b>G<sub>t</sub></b><span>estado atual</span></div>
-            <div class="moment"><b>Ĝ<sub>t+1</sub></b><span>fluxo previsto</span></div>
+        <div class="forecast-flow" aria-label="Grafo histórico combinado com eventos extraídos pelo LLM gera um novo grafo atualizado">
+          <div class="flow-inputs">
+            <figure class="flow-graph">
+              <figcaption>Grafo histórico</figcaption>
+              <svg viewBox="0 0 220 120" role="img" aria-label="Rede histórica de ruas">
+                <line x1="30" y1="72" x2="82" y2="28"/><line x1="30" y1="72" x2="90" y2="98"/><line x1="82" y1="28" x2="154" y2="42"/><line x1="90" y1="98" x2="154" y2="42"/><line x1="90" y1="98" x2="192" y2="88"/><line x1="154" y1="42" x2="192" y2="88"/>
+                <circle cx="30" cy="72" r="9"/><circle cx="82" cy="28" r="9"/><circle cx="90" cy="98" r="9"/><circle cx="154" cy="42" r="9"/><circle cx="192" cy="88" r="9"/>
+              </svg>
+            </figure>
+            <div class="flow-plus" aria-hidden="true">+</div>
+            <div class="flow-events">
+              <b>Eventos extraídos pelo LLM</b>
+              <span>Shows, jogos, interdições e outros sinais públicos alteram a estimativa de fluxo.</span>
+              <small>LLM as a sensor</small>
+            </div>
           </div>
-          <div class="equation-stack forecast-equations">
-            <div class="technical-equation"><span class="eq-number">(4)</span><span class="math-line">X<sub>t−L+1:t</sub> ∈ ℝ<sup>L×|E|×d</sup></span><small>L estados históricos, |E| ruas e d atributos observados por rua.</small></div>
-            <div class="technical-equation"><span class="eq-number">(5)</span><span class="math-line">X̂<sub>t+1:t+H</sub> = f<sub>θ</sub>(X<sub>t−L+1:t</sub>, C<sub>t:t+H</sub>)</span><small>f<sub>θ</sub> aprende dependências espaciais e temporais; C agrega calendário e eventos.</small></div>
-            <div class="technical-equation"><span class="eq-number">(6)</span><span class="math-line">x̂<sub>e,t+h</sub> = [τ̂<sub>e</sub>(t+h), n̂<sub>e</sub>(t+h)]</span><small>Para cada rua e horizonte h, produzimos tempo de travessia e pessoas afetadas previstos.</small></div>
-          </div>
+          <div class="flow-arrow" aria-hidden="true"><b>→</b><span>atualiza</span></div>
+          <figure class="flow-graph updated">
+            <figcaption>Grafo novo</figcaption>
+            <svg viewBox="0 0 220 120" role="img" aria-label="Rede atualizada com mudança no fluxo de uma rua">
+              <line x1="30" y1="72" x2="82" y2="28"/><line x1="30" y1="72" x2="90" y2="98"/><line x1="82" y1="28" x2="154" y2="42"/><line x1="90" y1="98" x2="154" y2="42"/><line class="emphasis" x1="90" y1="98" x2="192" y2="88"/><line x1="154" y1="42" x2="192" y2="88"/>
+              <circle cx="30" cy="72" r="9"/><circle cx="82" cy="28" r="9"/><circle cx="90" cy="98" r="9"/><circle cx="154" cy="42" r="9"/><circle class="changed" cx="192" cy="88" r="9"/>
+            </svg>
+            <p class="flow-output-note">A informação mais recente atualiza pessoas afetadas e tempo de deslocamento por rua.</p>
+          </figure>
         </div>
       </div>
       <footer class="slide-foot"><span class="brandline"><i></i> Alocador Urbano</span><span>Do histórico à janela ideal de execução</span></footer>
     </section>
 
-    <section class="slide" aria-label="Slide 6 de 9">
+    <section class="slide" aria-label="Slide 6 de 8">
       <header class="slide-head">
         <div><p class="kicker">Passo 3 · Otimização</p><h2>A melhor rota equilibra urgência, espera e impacto.</h2></div>
-        <span class="slide-number">06 / 09</span>
+        <span class="slide-number">06 / 08</span>
       </header>
       <div class="optimization-layout">
         <div class="optimization-copy">
           <div class="objective-formula equation-stack">
-            <div class="technical-equation"><span class="eq-number">(7)</span><span class="math-line">d<sub>i</sub> = (p<sub>i</sub>, s<sub>i</sub>, e<sub>i</sub>, r<sub>i</sub>), &nbsp; a<sub>i</sub> = t<sub>0</sub> − r<sub>i</sub>, &nbsp; x<sub>i</sub> ∈ {0,1}</span><small>Prioridade, duração, rua, abertura, idade e decisão de atendimento da demanda i.</small></div>
-            <div class="technical-equation"><span class="eq-number">(8)</span><span class="math-line">P<sub>A</sub> = Σ<sub>i</sub> p<sub>i</sub>a<sub>i</sub><sup>2</sup>(1−x<sub>i</sub>), &nbsp; P<sub>S</sub> = Σ<sub>i</sub> p<sub>i</sub>x<sub>i</sub>, &nbsp; N = Σ<sub>i</sub> n<sub>eᵢ</sub>x<sub>i</sub></span><small>Penalidade aberta, prioridade selecionada e impacto populacional total.</small></div>
-            <div class="technical-equation"><span class="eq-number">(9)</span><span class="math-line">R<sup>*</sup> = arg max<sub>R</sub> [−w<sub>A</sub>P̄<sub>A</sub> + w<sub>P</sub>P̄<sub>S</sub> − w<sub>N</sub>N̄]</span><small>As barras indicam termos normalizados; os pesos representam a política operacional.</small></div>
-            <div class="technical-equation"><span class="eq-number">(10)</span><span class="math-line">s.a. &nbsp; T<sub>desl</sub>(R) + Σ<sub>i</sub> s<sub>i</sub>x<sub>i</sub> ≤ T, &nbsp; |R| = Σ<sub>i</sub>x<sub>i</sub></span><small>A rota deve caber na jornada e cada demanda aparece no máximo uma vez.</small></div>
+            <div class="technical-equation"><span class="eq-number">(7)</span><span class="math-line">max<sub>R</sub> &nbsp; w<sub>1</sub>Σ<sub>i</sub>p<sub>i</sub>x<sub>i</sub> − w<sub>2</sub>Σ<sub>i</sub>p<sub>i</sub>a<sub>i</sub><sup>2</sup>(1−x<sub>i</sub>) − w<sub>3</sub>Σ<sub>i</sub>n<sub>eᵢ</sub>x<sub>i</sub></span><small>Maximiza prioridade atendida; penaliza demandas prioritárias e antigas ainda abertas; reduz pessoas afetadas.</small></div>
+            <div class="technical-equation"><span class="eq-number">(8)</span><span class="math-line">Σ<sub>i∈R</sub> (d<sub>i</sub>.desl + d<sub>i</sub>.tempo<sub>serviço</sub>) ≤ T</span><small>A soma dos deslocamentos e dos serviços selecionados deve caber na jornada disponível.</small></div>
           </div>
           <div class="scale-note">
             <div><b>Protótipo pequeno</b><span>Programação dinâmica encontra a solução exata para validar o objetivo.</span></div>
@@ -359,84 +381,64 @@
       <footer class="slide-foot"><span class="brandline"><i></i> Alocador Urbano</span><span>Uma decisão diária explicável e auditável</span></footer>
     </section>
 
-    <section class="slide" aria-label="Slide 7 de 9">
+    <section class="slide" aria-label="Slide 7 de 8">
       <header class="slide-head">
-        <div><p class="kicker">A interface</p><h2>Como a equipe recebe<br>e redireciona cada demanda.</h2></div>
-        <span class="slide-number">07 / 09</span>
+        <div><p class="kicker">Simulação</p><h2>Antes de comparar, observamos o alocador em ação.</h2></div>
+        <span class="slide-number">07 / 08</span>
       </header>
-      <div class="custom-layout">
-        <div>
-          <p class="lead">O otimizador decide a rota. Quem opera precisa <strong>ver, entender e despachar</strong> — sem ler código nem planilha.</p>
-          <div class="criteria">
-            <div class="criterion"><b>01</b><div><strong>Recebe</strong><span>As denúncias chegam pontuadas e georreferenciadas.</span></div></div>
-            <div class="criterion"><b>02</b><div><strong>Prioriza</strong><span>O painel monta a rota de maior pontuação para a jornada.</span></div></div>
-            <div class="criterion"><b>03</b><div><strong>Redireciona</strong><span>A equipe despacha e acompanha, com a decisão explicada.</span></div></div>
-          </div>
-        </div>
-        <a class="live-frame" href="https://hackathon-engenharia-acao-production.up.railway.app/" target="_blank" rel="noopener noreferrer">
-          <div class="lf-ic">&#9654;</div>
-          <div class="lf-t">https://hackathon-engenharia-acao-production.up.railway.app/</div>
-          <div class="lf-s">acesse o painel operacional ao vivo</div>
-        </a>
-      </div>
-      <footer class="slide-foot"><span class="brandline"><i></i> Alocador Urbano</span><span>Da otimização à operação</span></footer>
-    </section>
-    <section class="slide" aria-label="Slide 8 de 9">
-      <header class="slide-head">
-        <div><p class="kicker">Como coletamos os dados</p><h2>Do mapa real do Paraíso<br>à pontuação de cada rota.</h2></div>
-        <span class="slide-number">08 / 09</span>
-      </header>
-      <div class="graph-layout">
-        <div class="graph-copy">
-          <p class="lead">Rodamos a operação sobre a malha real do bairro e medimos os <strong>pontos</strong> que cada estratégia captura numa jornada de 8h.</p>
-          <div class="definitions">
-            <p><b>1 &middot; Mapa</b><span>malha real do Paraíso, importada do OpenStreetMap</span></p>
-            <p><b>2 &middot; Rede</b><span>deslocamento real, rua a rua, simulado no SUMO</span></p>
-            <p><b>3 &middot; Grafos</b><span>24 grafos — 8 horas × 3 repetições, com congestionamento</span></p>
-            <p><b>4 &middot; Pontos</b><span>cada política percorre a cidade e soma seus pontos</span></p>
-          </div>
-        </div>
-        <figure class="image-frame">
-          <video class="simulation-video" controls preload="metadata" playsinline aria-label="Simulação do caminhão percorrendo a malha viária do Paraíso no SUMO">
+      <div class="simulation-layout">
+        <figure class="simulation-frame">
+          <video controls preload="metadata" playsinline aria-label="Vídeo da simulação do alocador urbano">
             <source src="video.mp4" type="video/mp4" />
             Seu navegador não oferece suporte à reprodução deste vídeo.
           </video>
         </figure>
+        <aside class="simulation-copy">
+          <strong>Uma jornada urbana simulada</strong>
+          <p>A animação mostra como demandas, deslocamentos e tempo de serviço se combinam na rota escolhida pelo otimizador.</p>
+        </aside>
       </div>
-      <footer class="slide-foot"><span class="brandline"><i></i> Alocador Urbano</span><span>Coletamos assim &mdash; e chegamos nisto &#9656;</span></footer>
+      <footer class="slide-foot"><span class="brandline"><i></i> Alocador Urbano</span><span>Da decisão matemática ao comportamento observado</span></footer>
     </section>
 
-
-    <section class="slide" aria-label="Slide 9 de 9">
+    <section class="slide" aria-label="Slide 8 de 8">
       <header class="slide-head">
-        <div><p class="kicker">Resultado · Paraíso, São Paulo</p><h2>O dobro de pontos<br>que o método de hoje.</h2></div>
-        <span class="slide-number">09 / 09</span>
+        <div><p class="kicker">Resultado experimental</p><h2>Nas médias, o ótimo reduz a espera e mantém o equilíbrio.</h2></div>
+        <span class="slide-number">08 / 08</span>
       </header>
-      <div class="result-final">
-        <div class="rf-chart">
-          <div class="rf-col">
-            <span class="rf-val">52</span>
-            <div class="rf-barwrap"><div class="rf-bar" style="height:70.3%;background:#9a958d"></div></div>
-            <span class="rf-name">Aleatório</span>
-          </div>
-          <div class="rf-col">
-            <span class="rf-val">37</span>
-            <div class="rf-barwrap"><div class="rf-bar" style="height:50%;background:#c9a23f"></div></div>
-            <span class="rf-name">Só por tempo<br>(FIFO · atual)</span>
-          </div>
-          <div class="rf-col us">
-            <span class="rf-val">74</span>
-            <div class="rf-barwrap"><div class="rf-bar" style="height:100%;background:var(--sp-red)"></div></div>
-            <span class="rf-name">Nosso método</span>
-          </div>
+      <div class="benchmark-layout">
+        <div class="mean-charts" aria-label="Médias dos resultados em trinta configurações de demanda">
+          <article class="mean-chart">
+            <header><h3>Maior espera não atendida</h3><span>↓ menor é melhor</span></header>
+            <div class="bar-list">
+              <div class="bar-row exact"><span>Ótimo exato</span><div class="bar-track"><i class="bar-fill" style="--value:67.1%"></i></div><strong>8,43</strong></div>
+              <div class="bar-row"><span>Guloso ganho/min</span><div class="bar-track"><i class="bar-fill" style="--value:72.4%"></i></div><strong>9,10</strong></div>
+              <div class="bar-row"><span>Guloso prioridade</span><div class="bar-track"><i class="bar-fill" style="--value:93.6%"></i></div><strong>11,77</strong></div>
+              <div class="bar-row"><span>Vizinho próximo</span><div class="bar-track"><i class="bar-fill" style="--value:100%"></i></div><strong>12,57</strong></div>
+            </div>
+          </article>
+          <article class="mean-chart">
+            <header><h3>Prioridade total atendida</h3><span>↑ maior é melhor</span></header>
+            <div class="bar-list">
+              <div class="bar-row exact"><span>Ótimo exato</span><div class="bar-track"><i class="bar-fill" style="--value:99.2%"></i></div><strong>20,40</strong></div>
+              <div class="bar-row"><span>Guloso ganho/min</span><div class="bar-track"><i class="bar-fill" style="--value:91.7%"></i></div><strong>18,87</strong></div>
+              <div class="bar-row"><span>Guloso prioridade</span><div class="bar-track"><i class="bar-fill" style="--value:100%"></i></div><strong>20,57</strong></div>
+              <div class="bar-row"><span>Vizinho próximo</span><div class="bar-track"><i class="bar-fill" style="--value:90.1%"></i></div><strong>18,53</strong></div>
+            </div>
+          </article>
+          <article class="mean-chart">
+            <header><h3>Impacto de pessoas</h3><span>↓ menor é melhor</span></header>
+            <div class="bar-list">
+              <div class="bar-row exact"><span>Ótimo exato</span><div class="bar-track"><i class="bar-fill" style="--value:85.9%"></i></div><strong>3.295</strong></div>
+              <div class="bar-row"><span>Guloso ganho/min</span><div class="bar-track"><i class="bar-fill" style="--value:78.9%"></i></div><strong>3.026</strong></div>
+              <div class="bar-row"><span>Guloso prioridade</span><div class="bar-track"><i class="bar-fill" style="--value:84.1%"></i></div><strong>3.225</strong></div>
+              <div class="bar-row"><span>Vizinho próximo</span><div class="bar-track"><i class="bar-fill" style="--value:100%"></i></div><strong>3.836</strong></div>
+            </div>
+          </article>
         </div>
-        <div class="rf-gains">
-          <div class="rf-gain hero"><b>2×</b><span>mais pontos de prioridade que o método atual</span></div>
-          <div class="rf-gain"><b>+100%</b><span>vs. atendimento só por tempo (FIFO)</span></div>
-          <div class="rf-gain"><b>+42%</b><span>vs. atendimento aleatório</span></div>
-        </div>
+        <p class="method-note"><strong>Média de 30 configurações independentes</strong> de pontos, prioridades, idades, durações e impactos. Pesos fixos: w<sub>1</sub>=0,20; w<sub>2</sub>=0,55; w<sub>3</sub>=0,25. Dados mockados.</p>
       </div>
-      <footer class="slide-foot"><span class="brandline"><i></i> Alocador Urbano</span><span>Pontos de prioridade capturados · jornada de 8h</span></footer>
+      <footer class="slide-foot"><span class="brandline"><i></i> Alocador Urbano</span><span>Fonte: experimento reproduzível do notebook</span></footer>
     </section>
   </main>
 
