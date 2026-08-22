@@ -188,14 +188,16 @@
     /* video slot */
     .image-frame .video-slot, .route-frame .video-slot { width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; text-align:center; padding:24px;
       background: repeating-linear-gradient(45deg,#faf7f2,#faf7f2 14px,#f2ede4 14px,#f2ede4 28px); }
+    .simulation-video { display:block; width:100%; height:100%; object-fit:contain; background:var(--sp-black); }
     .video-slot .lf-ic { font-size:50px; color:var(--sp-red); }
     .video-slot .lf-t { font-weight:850; font-size:clamp(16px,1.5vw,24px); letter-spacing:.02em; }
     .video-slot .lf-s { color:var(--muted); font-size:clamp(12px,1.05vw,17px); max-width:34ch; line-height:1.4; }
     /* frontend hook (reusa custom-layout) */
     .custom-layout { display:grid; grid-template-columns:.95fr 1.05fr; gap:5vw; align-items:center; }
-    .live-frame { height:min(56vh,540px); border:2px dashed var(--sp-red); background:var(--soft-red); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:18px; text-align:center; padding:28px; }
+    .live-frame { height:min(56vh,540px); border:2px dashed var(--sp-red); background:var(--soft-red); color:var(--sp-black); text-decoration:none; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:18px; text-align:center; padding:28px; cursor:pointer; }
+    .live-frame:hover { border-style:solid; background:#f3dcda; }
     .live-frame .lf-ic { font-size:54px; color:var(--sp-red); line-height:1; }
-    .live-frame .lf-t { font-weight:850; font-size:clamp(18px,1.7vw,27px); letter-spacing:.02em; }
+    .live-frame .lf-t { font-weight:850; font-size:clamp(18px,1.7vw,27px); letter-spacing:.02em; overflow-wrap:anywhere; }
     .live-frame .lf-s { color:var(--muted); font-size:clamp(13px,1.1vw,18px); max-width:34ch; line-height:1.45; }
     /* resultado final - grafico de barras chamativo */
     .result-final { display:grid; grid-template-columns:1.45fr .75fr; gap:5vw; align-items:center; min-height:0; }
@@ -371,11 +373,11 @@
             <div class="criterion"><b>03</b><div><strong>Redireciona</strong><span>A equipe despacha e acompanha, com a decisão explicada.</span></div></div>
           </div>
         </div>
-        <div class="live-frame">
+        <a class="live-frame" href="https://hackathon-engenharia-acao-production.up.railway.app/" target="_blank" rel="noopener noreferrer">
           <div class="lf-ic">&#9654;</div>
-          <div class="lf-t">[ ABRIR O FRONTEND AO VIVO ]</div>
-          <div class="lf-s">aqui saímos dos slides e mostramos o painel funcionando</div>
-        </div>
+          <div class="lf-t">https://hackathon-engenharia-acao-production.up.railway.app/</div>
+          <div class="lf-s">acesse o painel operacional ao vivo</div>
+        </a>
       </div>
       <footer class="slide-foot"><span class="brandline"><i></i> Alocador Urbano</span><span>Da otimização à operação</span></footer>
     </section>
@@ -395,11 +397,10 @@
           </div>
         </div>
         <figure class="image-frame">
-          <div class="video-slot">
-            <div class="lf-ic">&#9654;</div>
-            <div class="lf-t">[ VÍDEO DA SIMULAÇÃO NO SUMO ]</div>
-            <div class="lf-s">o caminhão saindo da subprefeitura e percorrendo o Paraíso real</div>
-          </div>
+          <video class="simulation-video" controls preload="metadata" playsinline aria-label="Simulação do caminhão percorrendo a malha viária do Paraíso no SUMO">
+            <source src="video.mp4" type="video/mp4" />
+            Seu navegador não oferece suporte à reprodução deste vídeo.
+          </video>
         </figure>
       </div>
       <footer class="slide-foot"><span class="brandline"><i></i> Alocador Urbano</span><span>Coletamos assim &mdash; e chegamos nisto &#9656;</span></footer>
